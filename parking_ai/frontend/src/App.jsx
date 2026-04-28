@@ -60,7 +60,6 @@ function App() {
 
   useEffect(() => {
     connectWs()
-    // Fetch supplementary data periodically
     const interval = setInterval(() => {
       fetchHistory()
       fetchHeatmap()
@@ -120,17 +119,24 @@ function App() {
       </div>
 
       <div className="dashboard-grid">
+        {/* ── Main Column ─────────────────────────── */}
         <div className="main-column">
           <VideoFeed frame={frame} connected={connected} />
           <AnalyticsChart history={history} />
-        </div>
 
-        <div className="side-column">
-          <ControlPanel apiAction={apiAction} apiBase={API_BASE} />
-          <ConfidenceGauge confidence={metrics.avg_confidence} />
-          <HeatmapView heatmap={heatmap} />
+          {/* Analytics section below the chart */}
+          <div className="analytics-row">
+            <ConfidenceGauge confidence={metrics.avg_confidence} />
+            <HeatmapView heatmap={heatmap} />
+          </div>
+
           <ModelStatus modelInfo={modelInfo} apiAction={apiAction} />
           <TrainingPanel apiAction={apiAction} apiBase={API_BASE} />
+        </div>
+
+        {/* ── Side Column (controls only) ──────────── */}
+        <div className="side-column">
+          <ControlPanel apiAction={apiAction} apiBase={API_BASE} />
         </div>
       </div>
     </div>

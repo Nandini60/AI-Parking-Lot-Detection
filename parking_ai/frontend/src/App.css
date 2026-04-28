@@ -28,6 +28,13 @@
   gap: 20px;
 }
 
+/* ── Analytics Row (Confidence + Heatmap side-by-side) ── */
+.analytics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 /* ── Metric Cards Row ──────────────────── */
 .metrics-row {
   display: grid;
@@ -48,6 +55,12 @@
 /* ── Responsive ────────────────────────── */
 @media (max-width: 1200px) {
   .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .analytics-row {
     grid-template-columns: 1fr;
   }
 }
